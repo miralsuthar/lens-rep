@@ -18,7 +18,7 @@ function parse(data: any) {
 }
 
 export const encodeProfileId = (profileId?: string) => {
-  console.log(profileId);
+  //   console.log(solidityPack(["uint256"], [profileId]));
   if (!profileId) return;
   return solidityPack(["uint256"], [profileId]);
 };

@@ -79,14 +79,15 @@ export default function Home() {
     console.log(
       abi
         .decode(["uint256[8]"], worldCoinData.proof as string)[0]
-        .map((e: any) => e.toString())
+        .map((e: any) => e.toHexString())
     );
+    console.log(abi.decode(["uint256[8]"], worldCoinData.proof as string)[0]);
     if (!contract) return;
     const ress = await contract.lensProfile();
     console.log(ress);
 
     const res = await contract.verify(
-      BigNumber.from(profile.id).toString(),
+      profile.id,
       worldCoinData.merkle_root,
       worldCoinData.nullifier_hash,
       abi.decode(["uint256[8]"], worldCoinData.proof as string)[0],
@@ -97,7 +98,6 @@ export default function Home() {
         value: 0,
       }
     );
-    console.log(res);
   }
 
   return (
